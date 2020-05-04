@@ -15,15 +15,5 @@ import { __ } from '@wordpress/i18n';
  * @return {WPElement} Element to render.
  */
 export default function save() {
-
 	return null;
-
-	// return (
-	// 	<p>
-	// 		{ __(
-	// 			'Custom Navigation – hello from the saved content!',
-	// 			'create-block'
-	// 		) }
-	// 	</p>
-	// );
 }

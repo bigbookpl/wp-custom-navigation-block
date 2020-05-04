@@ -11,8 +11,8 @@
  * @package         create-block
  */
 
-function custom_navigation_render_callback(){
-	return "<h1>Custom Navigation - PHP Rendered</h1>";
+function custom_navigation_render_callback($attributes){
+	return wp_nav_menu(array('menu_id' => $attributes['menuId'], 'menu_class' => 'left-menu', 'echo' =>false));
 }
 
 /**

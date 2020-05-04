@@ -6,17 +6,11 @@
 import { __ } from '@wordpress/i18n';
 
 import {
-	ColorPalette,       // Element Tag for Gutenberg standard Palette selector
-	source,
-	TextControl,
-} from '@wordpress/blocks';
-
-import {
 	SelectControl
 } from '@wordpress/components';
 
 import {
-	RichText, InspectorControls  // Element Tag for sidebar view
+	InspectorControls
 } from '@wordpress/editor';
 
 
@@ -32,22 +26,19 @@ import {
  * @return {WPElement} Element to render.
  */
 export default function Edit(props) {
-	
+
 	var menuId = props.attributes.menuId;
-	console.log(props.attributes.menuId);
 
 	function onChangeNavigation(newValue) {
-		props.setAttributes({menuId: newValue})
-		// props.attributes.menuId = newValue;
+		props.setAttributes({ menuId: newValue })
 		console.log(newValue);
 	}
-	var link_url = "http://onet.pl"
 
 	var menus = wp.data.select('core').getMenus();
 
-	if (menus != null){
+	if (menus != null) {
 		menus = wp.data.select('core').getMenus().map(m => ({ value: m.id, label: m.name }));
-	}else{
+	} else {
 		menus = []
 	}
 	return [
@@ -66,7 +57,7 @@ export default function Edit(props) {
 		</InspectorControls>
 		,
 		<p>
-			Custom navigation component id: {menuId}
+			Custom navigation component (selected id: {menuId})
 		</p>
 
 	]
