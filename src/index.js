@@ -47,7 +47,8 @@ registerBlockType( 'create-block/custom-navigation', {
 	
 	attributes: {
 		menuId: {
-			type: 'number'
+			type: 'string',
+			// source: 'attribute',
 		},
 
 	},

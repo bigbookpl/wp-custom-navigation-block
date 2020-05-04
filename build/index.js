@@ -100,6 +100,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_4__);
 
 
 /**
@@ -107,6 +113,9 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
+
+
+
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -119,11 +128,40 @@ __webpack_require__.r(__webpack_exports__);
  * @return {WPElement} Element to render.
  */
 
-function Edit(_ref) {
-  var className = _ref.className;
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
-    className: className
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Xcustom Navigation – hello from the editor 2!', 'create-block'));
+function Edit(props) {
+  var menuId = props.attributes.menuId;
+  console.log(props.attributes.menuId);
+
+  function onChangeNavigation(newValue) {
+    props.setAttributes({
+      menuId: newValue
+    }); // props.attributes.menuId = newValue;
+
+    console.log(newValue);
+  }
+
+  var link_url = "http://onet.pl";
+  var menus = wp.data.select('core').getMenus();
+
+  if (menus != null) {
+    menus = wp.data.select('core').getMenus().map(function (m) {
+      return {
+        value: m.id,
+        label: m.name
+      };
+    });
+  } else {
+    menus = [];
+  }
+
+  return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_4__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    id: "gbs-block-inspected-inspector-control-wrapper"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["SelectControl"], {
+    label: "Select navigation",
+    value: menuId,
+    options: menus,
+    onChange: onChangeNavigation
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "Custom navigation component id: ", menuId)];
 }
 
 /***/ }),
@@ -188,7 +226,8 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('cre
   category: 'widgets',
   attributes: {
     menuId: {
-      type: 'number'
+      type: 'string' // source: 'attribute',
+
     }
   },
 
@@ -268,6 +307,28 @@ function save() {
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["blocks"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!*********************************************!*\
+  !*** external {"this":["wp","components"]} ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["components"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/editor":
+/*!*****************************************!*\
+  !*** external {"this":["wp","editor"]} ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["editor"]; }());
 
 /***/ }),
 
