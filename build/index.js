@@ -104,6 +104,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
 /* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4__);
 
 
 /**
@@ -111,6 +113,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
+
 
 
 
@@ -148,14 +151,20 @@ function Edit(props) {
     menus = [];
   }
 
-  return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    id: "gbs-block-inspected-inspector-control-wrapper"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["SelectControl"], {
+  return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Panel"], {
+    header: ""
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelBody"], {
+    title: "Navigation Settings",
+    initialOpen: true
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["SelectControl"], {
     label: "Select navigation",
     value: menuId,
     options: menus,
     onChange: onChangeNavigation
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "Custom navigation component (selected id: ", menuId, ")")];
+  }))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default.a, {
+    block: "bigbook/custom-navigation",
+    attributes: props.attributes
+  })];
 }
 
 /***/ }),
@@ -171,15 +180,18 @@ function Edit(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/save.js");
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./save */ "./src/save.js");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
+
 
 /**
  * Retrieves the translation of text.
@@ -200,18 +212,18 @@ __webpack_require__.r(__webpack_exports__);
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
 
-Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('create-block/custom-navigation', {
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('bigbook/custom-navigation', {
   /**
    * This is the display title for your block, which can be translated with `i18n` functions.
    * The block inserter will show this name.
    */
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Custom Navigation', 'create-block'),
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Custom Navigation', 'bigbook'),
 
   /**
    * This is a short description for your block, can be translated with `i18n` functions.
    * It will be shown in the Block Tab in the Settings Sidebar.
    */
-  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Example block written with ESNext standard and JSX support – build step required.', 'create-block'),
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Example block written with ESNext standard and JSX support – build step required.', 'bigbook'),
 
   /**
    * Blocks are grouped into categories to help users browse and discover them.
@@ -220,8 +232,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('cre
   category: 'widgets',
   attributes: {
     menuId: {
-      type: 'string' // source: 'attribute',
-
+      type: 'string'
     }
   },
 
@@ -229,25 +240,25 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('cre
    * An icon property should be specified to make it easier to identify a block.
    * These can be any of WordPress’ Dashicons, or a custom svg element.
    */
-  icon: 'smiley',
+  icon: 'menu-alt',
 
   /**
    * Optional block extended support features.
    */
   supports: {
     // Removes support for an HTML mode.
-    html: false
+    html: true
   },
 
   /**
    * @see ./edit.js
    */
-  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
 
   /**
    * @see ./save.js
    */
-  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
+  save: _save__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 
 /***/ }),
@@ -338,6 +349,17 @@ function save() {
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["i18n"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/server-side-render":
+/*!***************************************************!*\
+  !*** external {"this":["wp","serverSideRender"]} ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["serverSideRender"]; }());
 
 /***/ })
 

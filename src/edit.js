@@ -6,13 +6,14 @@
 import { __ } from '@wordpress/i18n';
 
 import {
-	SelectControl
+	SelectControl, Panel, PanelBody, PanelRow
 } from '@wordpress/components';
 
 import {
 	InspectorControls
 } from '@wordpress/editor';
 
+import ServerSideRender from '@wordpress/server-side-render';
 
 
 /**
@@ -43,22 +44,26 @@ export default function Edit(props) {
 	}
 	return [
 		<InspectorControls>
-			<div id="gbs-block-inspected-inspector-control-wrapper">
-				<SelectControl
-					label="Select navigation"
-					value={menuId}
-					options={
-						menus
-					}
-					onChange={onChangeNavigation}
-				/>
 
-			</div>
+			<Panel header="">
+				<PanelBody title="Navigation Settings" initialOpen={true}>
+					<PanelRow>
+							<SelectControl
+								label="Select navigation"
+								value={menuId}
+								options={
+									menus
+								}
+								onChange={onChangeNavigation}
+							/>
+					</PanelRow>
+				</PanelBody>
+			</Panel>
 		</InspectorControls>
 		,
-		<p>
-			Custom navigation component (selected id: {menuId})
-		</p>
-
+		<ServerSideRender
+			block="bigbook/custom-navigation"
+			attributes={props.attributes}
+		/>
 	]
 }

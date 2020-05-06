@@ -4,6 +4,9 @@
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
 import { registerBlockType } from '@wordpress/blocks';
+import {
+	ServerSideRender
+} from '@wordpress/server-side-render';
 
 /**
  * Retrieves the translation of text.
@@ -23,12 +26,12 @@ import save from './save';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'create-block/custom-navigation', {
+registerBlockType( 'bigbook/custom-navigation', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'Custom Navigation', 'create-block' ),
+	title: __( 'Custom Navigation', 'bigbook' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
@@ -36,7 +39,7 @@ registerBlockType( 'create-block/custom-navigation', {
 	 */
 	description: __(
 		'Example block written with ESNext standard and JSX support – build step required.',
-		'create-block'
+		'bigbook'
 	),
 
 	/**
@@ -48,7 +51,6 @@ registerBlockType( 'create-block/custom-navigation', {
 	attributes: {
 		menuId: {
 			type: 'string',
-			// source: 'attribute',
 		},
 
 	},
@@ -57,14 +59,14 @@ registerBlockType( 'create-block/custom-navigation', {
 	 * An icon property should be specified to make it easier to identify a block.
 	 * These can be any of WordPress’ Dashicons, or a custom svg element.
 	 */
-	icon: 'smiley',
+	icon: 'menu-alt',
 
 	/**
 	 * Optional block extended support features.
 	 */
 	supports: {
 		// Removes support for an HTML mode.
-		html: false,
+		html: true,
 	},
 
 	/**
